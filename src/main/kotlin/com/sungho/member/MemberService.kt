@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class MemberService(
-    private val memberRepository: MemberJPARepository,
+    private val memberRepository: MemberRepository,
 ) {
 
     @Transactional
@@ -21,7 +21,7 @@ class MemberService(
         return memberRepository.findAll()
     }
 
-    fun getMember(memberId: String): Member {
+    fun getMember(memberId: Long): Member {
         return memberRepository.findById(memberId).orElseThrow { throw IllegalArgumentException("해당 멤버가 없습니다") }
     }
 }

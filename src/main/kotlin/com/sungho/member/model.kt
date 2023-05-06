@@ -1,19 +1,18 @@
 package com.sungho.member
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "MEMBER")
 class Member(
     @Id
-    val memberId: String,
+    @Column(name = "id")
+    val memberId: Long,
     @Column(name = "PASSWORD")
     val password: String,
     @Column(name = "EMAIL")
     val email: String = "",
+    @Enumerated(EnumType.STRING)
     @Column(name = "ROLE")
     val role: ROLE,
 )
