@@ -18,7 +18,7 @@ class Order(
     @JoinColumn(name = "MEMBER_ID")
     val member: Member,
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     var orderEntryList: MutableList<OrderEntry> = mutableListOf(),
 )
 
