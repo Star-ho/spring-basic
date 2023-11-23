@@ -1,12 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.8"
+    id("org.springframework.boot") version "3.0.0"
     id("io.spring.dependency-management") version "1.1.0"
-    id("org.graalvm.buildtools.native") version "0.9.20"
-    kotlin("jvm") version "1.9.10"
-    kotlin("plugin.spring") version "1.9.10"
-    kotlin("plugin.jpa") version "1.9.10"
+    kotlin("plugin.serialization") version "1.7.20"
+
+    kotlin("jvm") version "1.7.21"
+    kotlin("plugin.spring") version "1.7.21"
+    kotlin("kapt") version "1.7.21"
 }
 
 group = "com.sungho"
@@ -22,6 +23,9 @@ configurations {
 repositories {
     mavenCentral()
 }
+
+val ktorVersion: String = "2.1.3"
+val queryDslVersion: String = "4.0.0"
 
 dependencies {
     implementation("mysql:mysql-connector-java:5.1.49")

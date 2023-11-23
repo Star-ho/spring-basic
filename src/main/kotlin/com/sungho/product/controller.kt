@@ -25,11 +25,12 @@ class ProductController {
     }
 }
 
-
 object RequestContextHolder {
     const val CONTEXT_KEY = "REQUEST_CONTEXT"
-    fun getRequest(): Mono<ServerHttpRequest> =
-        Mono.deferContextual { ctx -> Mono.just(ctx[CONTEXT_KEY]) }
+    fun getRequest(): Mono<ServerHttpRequest> {
+        val a = Mono.deferContextual<Mono<ServerHttpRequest>> { ctx -> Mono.just(ctx[CONTEXT_KEY]) }
+        return a
+    }
 }
 
 @Configuration
