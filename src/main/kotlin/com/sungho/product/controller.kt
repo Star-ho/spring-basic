@@ -15,20 +15,21 @@ import reactor.core.publisher.Mono
 
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/1")
 class ProductController {
     @GetMapping
     suspend fun getProductList(): String {
         val a = RequestContextHolder.getRequest().awaitSingle()
         return a.id
-
     }
 }
 
 object RequestContextHolder {
     const val CONTEXT_KEY = "REQUEST_CONTEXT"
     fun getRequest(): Mono<ServerHttpRequest> {
-        val a = Mono.deferContextual<Mono<ServerHttpRequest>> { ctx -> Mono.just(ctx[CONTEXT_KEY]) }
+        val a = Mono.deferContextual<ServerHttpRequest> {
+            ctx -> Mono.just(ctx[CONTEXT_KEY])
+        }
         return a
     }
 }
